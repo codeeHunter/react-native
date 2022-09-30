@@ -1,17 +1,7 @@
-import React, { useState } from "react";
-import { Alert, Dimensions, Pressable, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Validation } from "../../components/validation/Validation";
+import React, { useEffect, useState } from "react";
+import { Alert, Dimensions, Text, View } from "react-native";
 import { useAuth } from "../../hooks/useAuth";
-import {
-  AuthButton,
-  AuthButtonView,
-  AuthHeaderText,
-  AuthInput,
-  AuthView,
-  Container,
-  LabelInput,
-} from "./Authorization.style";
+import { ErrorText } from "./Authorization.style";
 import { Mobile } from "./Mobile";
 import { Tablet } from "./Tablet";
 
@@ -21,6 +11,7 @@ export const Authorization = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { isAuth, setIsAuth } = useAuth();
+  const [error, setError] = useState(false);
 
   if (isAuth) {
     navigation.navigate("Post");
@@ -32,8 +23,10 @@ export const Authorization = ({ navigation }) => {
       navigation.navigate("Post");
       setPassword("");
       setEmail("");
+      setError(false);
     } else {
-      Alert.alert("Введенные данные некорректны!");
+      setError(true);
+      Alert.alert("Введены некорректные данные!");
     }
   };
 
@@ -46,6 +39,7 @@ export const Authorization = ({ navigation }) => {
           setEmail={setEmail}
           password={password}
           setPassword={setPassword}
+          error={error}
         />
       ) : (
         <Mobile
@@ -54,6 +48,7 @@ export const Authorization = ({ navigation }) => {
           setEmail={setEmail}
           password={password}
           setPassword={setPassword}
+          error={error}
         />
       )}
     </>

@@ -12,7 +12,8 @@ export const AuthView = styled.View`
 `;
 
 export const AuthInput = styled.TextInput`
-  border: 2px solid rgb(39, 86, 156);
+  border: ${(props) =>
+    props.error ? "2px solid rgb(255, 102, 51)" : "2px solid rgb(39, 86, 156)"};
   background-color: rgb(219, 219, 219);
   padding: 2px;
   margin-top: 13px;
@@ -31,6 +32,8 @@ export const LabelInput = styled.Text`
   font-weight: bold;
   margin-top: 15px;
   padding-right: 15px;
+  color: ${(props) => (props.error ? "rgb(255, 102, 51)" : "black")};
+  text-decoration: ${(props) => (props.error ? "underline" : "none")};
 `;
 
 export const Container = styled.View`
@@ -64,4 +67,9 @@ export const TabletView = styled.View`
   align-items: center;
   justify-content: space-between;
   width: 90%;
+`;
+
+export const ErrorText = styled.Text`
+  color: red;
+  font-weight: bold;
 `;

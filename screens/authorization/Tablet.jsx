@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Pressable, View } from "react-native";
 import {
   AuthButton,
@@ -7,6 +7,7 @@ import {
   AuthInput,
   AuthView,
   Container,
+  ErrorText,
   LabelInput,
   TabletView,
 } from "./Authorization.style";
@@ -17,7 +18,10 @@ export const Tablet = ({
   password,
   setPassword,
   handleAuth,
+  setError,
+  error,
 }) => {
+  setError(false);
   return (
     <Container>
       <AuthView>

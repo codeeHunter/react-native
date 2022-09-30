@@ -16,6 +16,7 @@ export const Mobile = ({
   password,
   setPassword,
   handleAuth,
+  error,
 }) => {
   return (
     <Container>
@@ -24,12 +25,17 @@ export const Mobile = ({
           <AuthHeaderText>Autorization</AuthHeaderText>
         </View>
         <SafeAreaView>
-          <LabelInput>login</LabelInput>
-          <AuthInput value={email} onChangeText={(email) => setEmail(email)} />
+          <LabelInput error={error}>login</LabelInput>
+          <AuthInput
+            error={error}
+            value={email}
+            onChangeText={(email) => setEmail(email)}
+          />
         </SafeAreaView>
         <SafeAreaView>
-          <LabelInput>password</LabelInput>
+          <LabelInput error={error}>password</LabelInput>
           <AuthInput
+            error={error}
             value={password}
             secureTextEntry={true}
             onChangeText={(password) => setPassword(password)}
